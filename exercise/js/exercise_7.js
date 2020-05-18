@@ -46,7 +46,9 @@ const account = {
     /*
      * Метод возвращает текущий баланс
      */
-    getBalance() {},
+    getBalance() {
+       console.log(`Баланс на счету: ${this.balance}`);
+    },
 
     /*
      * Метод ищет и возвращает объект транзации по id
@@ -59,3 +61,5 @@ const account = {
      */
     getTransactionTotal(type) {},
 };
+
+account.getBalance();

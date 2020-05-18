@@ -8,8 +8,11 @@ const products = [
 const getAllPropValues = function (arr, prop) {
     let arrayOfProperties = [];
     for (const property of arr) {
-        arrayOfProperties.push(property[prop]);
+        if (property[prop] !== undefined) {
+            arrayOfProperties.push(property[prop]);
+        }
     }
+    
     return arrayOfProperties;
 };
 
