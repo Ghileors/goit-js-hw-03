@@ -47,7 +47,7 @@ const account = {
      * Метод возвращает текущий баланс
      */
     getBalance() {
-       console.log(`Баланс на счету: ${this.balance}`);
+        console.log(`Баланс на счету: ${this.balance}`);
     },
 
     /*

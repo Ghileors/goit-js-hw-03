@@ -12,7 +12,7 @@ const getAllPropValues = function (arr, prop) {
             arrayOfProperties.push(property[prop]);
         }
     }
-    
+
     return arrayOfProperties;
 };
 
