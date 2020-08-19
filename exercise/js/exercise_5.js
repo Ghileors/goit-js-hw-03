@@ -6,16 +6,20 @@ const products = [
 ];
 
 const getAllPropValues = function (arr, prop) {
-    let arrayOfProperties = [];
-    for (const property of arr) {
-        if (property[prop] !== undefined) {
-            arrayOfProperties.push(property[prop]);
-        }
-    }
+    let arrOfProperties = [];
 
-    return arrayOfProperties;
+    arr.map(property => {
+        if (property[prop] !== undefined) {
+            arrOfProperties.push(property[prop]);
+        }
+    });
+
+    return arrOfProperties;
 };
 
+/*
+ * Вызовы функции для проверки работоспособности реализации.
+ */
 console.log(getAllPropValues(products, 'name')); // ['Радар', 'Сканер', 'Дроид', 'Захват']
 
 console.log(getAllPropValues(products, 'quantity')); // [4, 3, 7, 2]

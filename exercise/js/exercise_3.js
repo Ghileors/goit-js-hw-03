@@ -1,15 +1,16 @@
 const findBestEmployee = function (employees) {
-    const employeeValue = Object.values(employees);
-    const employeeName = Object.keys(employees);
-    const maxValue = Math.max(...employeeValue);
+    const maxValue = Math.max(...Object.values(employees));
 
-    for (const name of employeeName) {
-        if (employees[name] === maxValue) {
-            return `${name}`;
+    for (const bestEmployee of Object.keys(employees)) {
+        if (employees[bestEmployee] === maxValue) {
+            return bestEmployee;
         }
     }
 };
 
+/*
+ * Вызовы функции для проверки работоспособности реализации.
+ */
 console.log(
     findBestEmployee({
         ann: 29,

@@ -7,14 +7,19 @@ const products = [
 
 const calculateTotalPrice = (allProdcuts, productName) => {
     let totalPrice = 0;
-    for (const nameProduct of allProdcuts) {
-        if (nameProduct.name === productName) {
-            totalPrice = nameProduct.price * nameProduct.quantity;
+
+    allProdcuts.forEach(product => {
+        if (product.name === productName) {
+            totalPrice = product.price * product.quantity;
         }
-    }
+    });
+
     return totalPrice;
 };
 
+/*
+ * Вызовы функции для проверки работоспособности реализации.
+ */
 console.log(calculateTotalPrice(products, 'Радар')); // 5200
 
 console.log(calculateTotalPrice(products, 'Дроид')); // 2800

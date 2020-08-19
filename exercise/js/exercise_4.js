@@ -1,11 +1,11 @@
 const countTotalSalary = function (employees) {
-    const values = Object.values(employees);
-    let totalSalary = 0;
-    for (const value of values) {
-        totalSalary += value;
-    }
-    return totalSalary;
+    return Object.values(employees).reduce((acc, value) => acc + value, 0);
 };
+
+/*
+ * Вызовы функции для проверки работоспособности реализации.
+ */
+console.log(countTotalSalary({})); // 0
 
 console.log(
     countTotalSalary({

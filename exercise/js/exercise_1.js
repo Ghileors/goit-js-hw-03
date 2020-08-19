@@ -5,12 +5,12 @@ const user = {
     premium: true,
 };
 
-const updateUser = {
-    mood: 'happy',
-    ...user,
-    hobby: 'skydiving',
-    premium: false,
-};
+// const updateUser = {
+//     mood: 'happy',
+//     ...user,
+//     hobby: 'skydiving',
+//     premium: false,
+// };
 
 const showUserData = data => {
     const keys = Object.keys(data);
@@ -19,4 +19,4 @@ const showUserData = data => {
     }
 };
 
-showUserData(updateUser);
+showUserData({ mood: 'happy', ...user, hobby: 'skydiving', premium: false });

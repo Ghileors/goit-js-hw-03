@@ -1,65 +1,83 @@
-/*
- * Типов транзацкий всего два.
- * Можно положить либо снять деньги со счета.
- */
 const Transaction = {
     DEPOSIT: 'deposit',
     WITHDRAW: 'withdraw',
 };
 
-/*
- * Каждая транзакция это объект со свойствами: id, type и amount
- */
-
 const account = {
-    // Текущий баланс счета
     balance: 0,
-
-    // История транзакций
     transactions: [],
 
-    /*
-     * Метод создает и возвращает объект транзакции.
-     * Принимает сумму и тип транзакции.
-     */
-    createTransaction(amount, type) {},
+    createTransaction(amount, type) {
+        let transaction = {};
 
-    /*
-     * Метод отвечающий за добавление суммы к балансу.
-     * Принимает сумму танзакции.
-     * Вызывает createTransaction для создания объекта транзакции
-     * после чего добавляет его в историю транзакций
-     */
-    deposit(amount) {},
-
-    /*
-     * Метод отвечающий за снятие суммы с баланса.
-     * Принимает сумму танзакции.
-     * Вызывает createTransaction для создания объекта транзакции
-     * после чего добавляет его в историю транзакций.
-     *
-     * Если amount больше чем текущий баланс, выводи сообщение
-     * о том, что снятие такой суммы не возможно, недостаточно средств.
-     */
-    withdraw(amount) {},
-
-    /*
-     * Метод возвращает текущий баланс
-     */
-    getBalance() {
-        console.log(`Баланс на счету: ${this.balance}`);
+        if (type === Transaction.DEPOSIT || type === Transaction.WITHDRAW) {
+            transaction.type = type;
+        } else {
+            return alert('Тип транзакции неизвестен.');
+        }
+        transaction.amount = amount;
+        transaction.id = this.transactions.length + 1;
+        return transaction;
     },
 
-    /*
-     * Метод ищет и возвращает объект транзации по id
-     */
-    getTransactionDetails(id) {},
+    deposit(amount) {
+        this.transactions.push(
+            this.createTransaction(amount, Transaction.DEPOSIT),
+        );
 
-    /*
-     * Метод возвращает количество средств
-     * определенного типа транзакции из всей истории транзакций
-     */
-    getTransactionTotal(type) {},
+        return (this.balance += amount);
+    },
+
+    withdraw(amount) {
+        this.transactions.push(
+            this.createTransaction(amount, Transaction.WITHDRAW),
+        );
+
+        if (amount > this.balance) {
+            return 'Недостаточно средств на счету';
+        } else {
+            this.balance -= amount;
+            return 'Средства успешно сняты.';
+        }
+    },
+
+    getBalance() {
+        return `Текущий баланс ${this.balance}`;
+    },
+
+    getTransactionDetails(id) {
+        for (let transaction of this.transactions) {
+            if (transaction.id === id) {
+                return transaction;
+            }
+        }
+        //  this.transactions.forEach(transaction => {
+        //     if (transaction.id === id) {
+        //         return transaction;
+        //     }
+        // });
+    },
+
+    getTransactionTotal(type) {
+        let result = [];
+        for (const transaction of this.transactions) {
+            if (type === transaction.type) {
+                result.push(transaction);
+            }
+        }
+        // const result = this.transactions.map(transaction => {
+        //     if (transaction.type === type) {
+        //         return this.transaction;
+        //     }
+        // });
+
+        return result;
+    },
 };
 
-account.getBalance();
+console.log(account.createTransaction(19, 'withdraw'));
+console.log(account.deposit(19));
+console.log(account.withdraw(18));
+console.log(account.getBalance());
+console.log(account.getTransactionDetails(1));
+console.log(account.getTransactionTotal('withdraw'));
